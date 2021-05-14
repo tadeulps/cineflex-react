@@ -1,43 +1,38 @@
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import Types from "./Types"
+import Seat from "./Seat"
+
 export default function ChoosePlace(){
-    return(
+    const {idSession} = useParams();
+    console.log(idSession)
+    const [place, setPlace] = useState([]);
+     
+
+	useEffect(() => {
+		const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idSession}/seats`);
+
+		requisicao.then(a => {
+			setPlace(a.data.seats);
+           
+		});
+	}, []);
+    
+   
+    console.log(place)
+    return(<>
         <div class="choose-place ">
         <div class="select">Selecione o(s) assento(s) </div>
         <div class="places">
-            <button class="place">01</button>
-            <button class="place">02</button>
-            <button class="place">03</button>
-            <button class="place">04</button>
-            <button class="place">05</button>
-            <button class="place">06</button>
-            <button class="place">07</button>
-            <button class="place">08</button>
-            <button class="place">09</button>
-            <button class="place">10</button>
-            <button class="place">01</button>
-            <button class="place">02</button>
-            <button class="place">03</button>
-            <button class="place">04</button>
-            <button class="place">05</button>
-            <button class="place">06</button>
-            <button class="place">07</button>
-            <button class="place">08</button>
-            <button class="place">09</button>
-            <button class="place">10</button>
+            {place.map((e)=>{
+                 return (
+                 <Seat name={e.name} isAvailable={e.isAvailable}/>
+                 )
+            })}
+           
         </div>
-        <div class="types">
-            <div>
-                <button class="place selecionado"></button>
-                <p>Selecionado </p>
-            </div>
-            <div>
-                <button class="place "></button>
-                <p>Disponível </p>
-            </div>
-            <div>
-                <button class="place indisponivel"></button>
-                <p>Indisponível </p>
-            </div>
-        </div>
+        <Types/>
         <div class="infos">
             <p>Nome do comprador:</p>
             <input type="text" placeholder="Digite seu nome..."/>
@@ -51,5 +46,7 @@ export default function ChoosePlace(){
         </div>
 
     </div>
+    </>
     )
+   
 }
