@@ -5,7 +5,7 @@ import Types from "./Types"
 import Seat from "./Seat"
 import Buyer from "./Buyer"
 import Reservation from "./Reservation"
-
+import Bar from "../inf-bar/Bar"
 export default function ChoosePlace(props){
     const {collect,setCollect,otherInfos,setOtherInfos}=props
     const {idSession} = useParams();
@@ -21,9 +21,10 @@ export default function ChoosePlace(props){
 		requisicao.then(a => {
 			setPlace(a.data.seats);
             setCollect(a.data)
+            
 		});
 	}, []);
-    
+    console.log(collect)
    
   
     return(<>
@@ -42,7 +43,15 @@ export default function ChoosePlace(props){
         <Reservation nome={nome} cpf={cpf} selectedSeats={selectedSeats} setCollect={setCollect} otherInfos={otherInfos} setOtherInfos={setOtherInfos}/>
 
     </div>
+    {collect!=undefined
+    ?<Bar  name={collect.movie.title} url={collect.movie.posterURL} time={collect.day.weekday} hour={collect.name}/>
+    :'aa'
+    }
     </>
     )
    
 }
+/* name={collect.movie.title}
+url={collect.movie.posterUrl}
+time={collect.day.weekday}
+hour={collect.name}*/

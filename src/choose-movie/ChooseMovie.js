@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Movie from "./Movie"
+import Bar from "../inf-bar/Bar"
 
 export default function ChooseMovie(){
     const [items, setItems] = useState([]);
@@ -15,7 +16,7 @@ export default function ChooseMovie(){
 	}, []);
    
     return(
-        
+        <>
     <div class="choose-movie ">
         <div class="select">Selecione o filme </div>
         <div class="movie-list">
@@ -24,7 +25,8 @@ export default function ChooseMovie(){
           ))}
         </div>
     </div>
-    
+   
+    </>
     )
 }
 /*import { useState, useEffect } from 'react';

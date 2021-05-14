@@ -20,7 +20,7 @@ export default function ChooseHour(props){
             setInfoFooter(a.data)
 		});
 	}, []);
-    console.log(infoFooter)
+    
 
     return(
         <>
@@ -33,7 +33,7 @@ export default function ChooseHour(props){
         })}
         
     </div>
-    <Bar name={infoFooter.title}/>
+    <Bar name={infoFooter.title} time='' url={infoFooter.posterURL} hour=''/>
     </>
     )
 }
