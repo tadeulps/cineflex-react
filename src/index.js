@@ -1,6 +1,6 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import ReactDOM from "react-dom";
-import React from "react";
+import React, { useState } from "react";
 import ChooseMovie from "./choose-movie/ChooseMovie"
 import Choosehour from "./choose-hour/ChooseHour"
 import Bar from "./inf-bar/Bar"
@@ -8,8 +8,10 @@ import ChoosePlace from "./choose-place/ChoosePlace"
 import FinalScreen from "./final/FinalScreen"
 import Header from "./Header"
 
+
 function App() {
-   
+   const [collect,setCollect] = useState({});
+   const [otherInfos,setOtherInfos]=useState({});
     return (
         <>
     <BrowserRouter>
@@ -21,17 +23,17 @@ function App() {
     </Route>
 
     <Route path="/movie/:idMovie" exact>    
-    <Choosehour/>
+    <Choosehour collect={collect} setCollect={setCollect}/>
     </Route>
 
    
 
     <Route path="/session/:idSession" exact>  
-    <ChoosePlace/>
+    <ChoosePlace collect={collect} setCollect={setCollect} otherInfos={otherInfos} setOtherInfos={setOtherInfos}/>
     </Route>
 
     <Route path="/end" exact>  
-    <FinalScreen/>
+    <FinalScreen collect={collect} otherInfos={otherInfos}/>
     </Route>
 
     </Switch>

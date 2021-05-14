@@ -6,20 +6,21 @@ import Seat from "./Seat"
 import Buyer from "./Buyer"
 import Reservation from "./Reservation"
 
-export default function ChoosePlace(){
+export default function ChoosePlace(props){
+    const {collect,setCollect,otherInfos,setOtherInfos}=props
     const {idSession} = useParams();
     const [selectedSeats,setSelectedSeats]=useState([]);
     const [place, setPlace] = useState([]);
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
-    console.log(selectedSeats)
+    
 
 	useEffect(() => {
 		const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idSession}/seats`);
 
 		requisicao.then(a => {
 			setPlace(a.data.seats);
-           
+            setCollect(a.data)
 		});
 	}, []);
     
@@ -38,7 +39,7 @@ export default function ChoosePlace(){
         </div>
         <Types/>
         <Buyer nome={nome} setNome={setNome} cpf={cpf} setCpf={setCpf} />
-        <Reservation nome={nome} cpf={cpf} selectedSeats={selectedSeats}/>
+        <Reservation nome={nome} cpf={cpf} selectedSeats={selectedSeats} setCollect={setCollect} otherInfos={otherInfos} setOtherInfos={setOtherInfos}/>
 
     </div>
     </>

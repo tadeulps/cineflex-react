@@ -18,17 +18,14 @@ export default function Seat(props){
     function selected(){
          if(classe==="place"){
             setClasse('place selecionado')
-            add()
+            setSelectedSeats([...selectedSeats,id])
         }else{
             setClasse("place")
+            setSelectedSeats(selectedSeats.filter((e)=>e!==id))
     }
      }
     function errorAlert(){
         alert("Esse assento não está disponível")
     }
-    function add(){
-        const newArray = [];
-        newArray.push(selectedSeats)
-        setSelectedSeats([id])
-    }
+   
 }
