@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 export default function FinalScreen(props){
     const {collect,otherInfos}=props
-    console.log(otherInfos.ids)
+   
     let seats=otherInfos.ids
     return(
         <div class="final-screen ">

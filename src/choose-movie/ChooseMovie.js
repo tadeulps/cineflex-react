@@ -29,16 +29,3 @@ export default function ChooseMovie(){
     </>
     )
 }
-/*import { useState, useEffect } from 'react';
-export default function Seat(props){
-    const {name,isAvailable}=props;
-    const [classe, setClasse] = useState('place'); 
-    console.log(isAvailable)
-
-    if(isAvailable){
-        return(
-        <button class={classe} >{name}</button>
-        )
-    }
-    
-}*/

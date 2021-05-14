@@ -24,7 +24,7 @@ export default function ChoosePlace(props){
             
 		});
 	}, []);
-    console.log(collect)
+   
    
   
     return(<>
@@ -43,7 +43,7 @@ export default function ChoosePlace(props){
         <Reservation nome={nome} cpf={cpf} selectedSeats={selectedSeats} setCollect={setCollect} otherInfos={otherInfos} setOtherInfos={setOtherInfos}/>
 
     </div>
-    {collect!=undefined
+    {collect.movie
     ?<Bar  name={collect.movie.title} url={collect.movie.posterURL} time={collect.day.weekday} hour={collect.name}/>
     :'aa'
     }
