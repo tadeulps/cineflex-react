@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function FinalScreen(props){
     const {collect,otherInfos}=props
     console.log(otherInfos.ids)
@@ -20,10 +21,11 @@ export default function FinalScreen(props){
         <div class="title">Comprador</div>
         <div class="sub">Nome: {otherInfos.name} <br/>CPF: {otherInfos.cpf}</div>
         <div class="box-button">
-            
+            <Link to={`/`}>
             <button class="time">
                 Voltar pra Home
             </button>
+            </Link>
         </div>
     </div>
     )
