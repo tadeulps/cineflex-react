@@ -13,7 +13,7 @@ export default function ChooseMovie(){
            
 		});
 	}, []);
-    console.log(items)
+   
     return(
         
     <div class="choose-movie ">

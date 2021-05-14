@@ -30,7 +30,10 @@ function App() {
     <ChoosePlace/>
     </Route>
 
+    <Route path="/end" exact>  
     <FinalScreen/>
+    </Route>
+
     </Switch>
     </BrowserRouter>
         </>

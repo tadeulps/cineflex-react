@@ -2,9 +2,10 @@
 import { useState } from 'react';
 export default function Seat(props){
     
-    const {name,isAvailable}=props;
+    const {name,isAvailable,id,selectedSeats,setSelectedSeats}=props;
     const [classe, setClasse] = useState('place'); 
-    console.log(isAvailable)
+    const ids=[]
+   
    
         if(isAvailable){
             return(
@@ -14,14 +15,20 @@ export default function Seat(props){
                 <button class="place indisponivel" onClick={errorAlert}>{name}</button>
             )
         }
-     function selected(){
+    function selected(){
          if(classe==="place"){
-        setClasse('place selecionado')
-    }else{
-        setClasse("place")
+            setClasse('place selecionado')
+            add()
+        }else{
+            setClasse("place")
     }
      }
     function errorAlert(){
         alert("Esse assento não está disponível")
+    }
+    function add(){
+        const newArray = [];
+        newArray.push(selectedSeats)
+        setSelectedSeats([id])
     }
 }

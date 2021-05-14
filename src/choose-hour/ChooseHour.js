@@ -15,7 +15,7 @@ export default function ChooseHour(){
            
 		});
 	}, []);
-    console.log(movieList)
+    
 
     return(
     <div class="choose-hour ">

@@ -3,12 +3,16 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Types from "./Types"
 import Seat from "./Seat"
+import Buyer from "./Buyer"
+import Reservation from "./Reservation"
 
 export default function ChoosePlace(){
     const {idSession} = useParams();
-    console.log(idSession)
+    const [selectedSeats,setSelectedSeats]=useState([]);
     const [place, setPlace] = useState([]);
-     
+    const [nome, setNome] = useState("");
+    const [cpf, setCpf] = useState("");
+    console.log(selectedSeats)
 
 	useEffect(() => {
 		const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idSession}/seats`);
@@ -20,30 +24,21 @@ export default function ChoosePlace(){
 	}, []);
     
    
-    console.log(place)
+  
     return(<>
         <div class="choose-place ">
         <div class="select">Selecione o(s) assento(s) </div>
         <div class="places">
             {place.map((e)=>{
                  return (
-                 <Seat name={e.name} isAvailable={e.isAvailable}/>
+                 <Seat name={e.name} isAvailable={e.isAvailable} id={e.id}selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats}/>
                  )
             })}
            
         </div>
         <Types/>
-        <div class="infos">
-            <p>Nome do comprador:</p>
-            <input type="text" placeholder="Digite seu nome..."/>
-            <p>CPF do comprador:</p>
-            <input type="text" placeholder="Digite seu CPF..."/>
-        </div>
-        <div class="box-button">
-            <button class="time">
-                Reservar assento(s)
-            </button>
-        </div>
+        <Buyer nome={nome} setNome={setNome} cpf={cpf} setCpf={setCpf} />
+        <Reservation nome={nome} cpf={cpf} selectedSeats={selectedSeats}/>
 
     </div>
     </>
