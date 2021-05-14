@@ -1,16 +1,30 @@
-export default function ChooseHour(){
-    return(
-        <div class="choose-hour ">
-        <div class="select">Selecione o horário </div>
-        <div class="day"> Quinta-feira - 24/06/2021</div>
-        <button class="time">15:00</button>
-        <button class="time">16:00</button>
-        <button class="time">15:00</button>
-        <button class="time">16:00</button>
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import Weekday from "./Weekday"
 
-        <div class="day"> Sexta-feira - 25/06/2021</div>
-        <button class="time">17:00</button>
-        <button class="time">19:00</button>
+export default function ChooseHour(){
+    const {idMovie} = useParams();
+    const [movieList, setMovieList] = useState([]);
+
+	useEffect(() => {
+		const requisicao = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idMovie}/showtimes`);
+
+		requisicao.then(a => {
+			setMovieList(a.data.days);
+           
+		});
+	}, []);
+    console.log(movieList.days)
+    return(
+    <div class="choose-hour ">
+        <div class="select">Selecione o horário </div>
+        {movieList.map((e)=>{
+            return (
+                <Weekday weekday={e.weekday} date={e.date} hours={e.showtimes}/>
+            )
+        })}
+        
     </div>
     )
 }

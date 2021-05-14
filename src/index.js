@@ -15,12 +15,21 @@ function App() {
     <BrowserRouter>
     <Header/>
     <Switch>
+
     <Route path="/" exact>
      <ChooseMovie/>   
     </Route>
+
+    <Route path="/movie/:idMovie" exact>    
     <Choosehour/>
-    <Bar/>
+    </Route>
+
+   
+
+    <Route path="/session/:idSession" exact>  
     <ChoosePlace/>
+    </Route>
+
     <FinalScreen/>
     </Switch>
     </BrowserRouter>
