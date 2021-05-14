@@ -24,6 +24,7 @@ function App() {
 
     <Route path="/movie/:idMovie" exact>    
     <Choosehour collect={collect} setCollect={setCollect}/>
+    
     </Route>
 
    

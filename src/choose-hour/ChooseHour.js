@@ -2,11 +2,13 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Weekday from "./Weekday"
+import Bar from "../inf-bar/Bar"
 
 export default function ChooseHour(props){
     const {collect,setCollect}=props
     const {idMovie} = useParams();
     const [movieList, setMovieList] = useState([]);
+    const [infoFooter,setInfoFooter]=useState([])
     let testando=0
 
 	useEffect(() => {
@@ -14,13 +16,14 @@ export default function ChooseHour(props){
 
 		requisicao.then(a => {
 			setMovieList(a.data.days);
-            testando=a.data
-            console.log(testando.title)
+            testando=a.data.title
+            setInfoFooter(a.data)
 		});
 	}, []);
-    
+    console.log(infoFooter)
 
     return(
+        <>
     <div class="choose-hour ">
         <div class="select">Selecione o horário </div>
         {movieList.map((e)=>{
@@ -30,5 +33,7 @@ export default function ChooseHour(props){
         })}
         
     </div>
+    <Bar name={infoFooter.title}/>
+    </>
     )
 }
